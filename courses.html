@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses - LearnSmart</title>
+  <style>
+    :root {
+      --primary-color: #4b0082;
+      --hover-color: #6a0dad;
+      --bg-color: #f4f4fc;
+      --text-color: #1a1a1a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    header {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    header h4 {
+      font-weight: normal;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      margin: 0 12px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 15px;
+      transition: 0.3s;
+      border-radius: 4px;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--hover-color);
+    }
+
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    #searchBar {
+      width: 50%;
+      max-width: 400px;
+      padding: 10px 15px;
+      margin: 20px auto;
+      border: 2px solid var(--primary-color);
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .course-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .course-box {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .course-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-box h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .course-box p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .enroll-btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .enroll-btn:hover {
+      background-color: var(--hover-color);
+    }
+
+    .links {
+      margin-top: 40px;
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .links h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: var(--primary-color);
+    }
+
+    .links a {
+      display: block;
+      color: #0066cc;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    footer p {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: var(--hover-color);
+    }
+
+    @media (max-width: 600px) {
+      #searchBar {
+        width: 80%;
+      }
+      .course-box {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LearnSmart Courses</h1>
+    <h4>A startup by Navyashree, Founder & Developer</h4>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="youtube.html">Youtube-sources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section-title">Explore Top Free Engineering Courses</h2>
+
+    <input type="text" id="searchBar" placeholder="Search for a course..." onkeyup="filterCourses()"/>
+
+    <div class="course-container" id="courseList">
+      <!-- Added 20 Top Free Courses -->
+      <div class="course-box">
+        <h3>Data Science</h3>
+        <p>Intro to Machine Learning, Pandas, Python – hands-on!</p>
+        <a href="https://www.coursera.org/courses?query=data%20science" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Web Development</h3>
+        <p>Build responsive websites with HTML, CSS & JS.</p>
+        <a href="https://www.freecodecamp.org/learn/" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>AI & Deep Learning</h3>
+        <p>Neural Networks, NLP & image classification with Python.</p>
+        <a href="https://www.edx.org/course/cs50s-introduction-to-artificial-intelligence-with-python" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Software Engineering</h3>
+        <p>Agile, Git, SDLC, OOPs, Testing strategies.</p>
+        <a href="https://www.coursera.org/specializations/software-development" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Computer Networks</h3>
+        <p>OSI Model, TCP/IP, Subnetting, Routing protocols.</p>
+        <a href="https://www.udemy.com/course/computer-networking-for-beginners/" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Cloud Computing</h3>
+        <p>AWS, Azure, Kubernetes, Cloud Security basics.</p>
+        <a href="https://www.edx.org/course/cloud-computing" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Machine Learning</h3>
+        <p>Stanford University’s ML course – Andrew Ng.</p>
+        <a href="https://www.coursera.org/learn/machine-learning" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Mobile App Development</h3>
+        <p>Build native apps for Android & iOS from scratch.</p>
+        <a href="https://www.udemy.com/course/learn-to-build-android-apps/" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Game Development</h3>
+        <p>Learn Unity and build your own game.</p>
+        <a href="https://www.udemy.com/course/unity-3d-game-development/" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Cybersecurity</h3>
+        <p>Build your defense skills with this beginner-friendly course.</p>
+        <a href="https://www.edx.org/course/intro-to-cyber-security" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>DevOps</h3>
+        <p>Understand the DevOps lifecycle and tools.</p>
+        <a href="https://www.udemy.com/course/devops-tutorial/" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Database Management</h3>
+        <p>Master SQL, NoSQL, DB design & administration.</p>
+        <a href="https://www.coursera.org/learn/database-management" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Operating Systems</h3>
+        <p>Learn core OS concepts: memory, process management, and more.</p>
+        <a href="https://www.udemy.com/course/operating-systems-concepts/" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Blockchain</h3>
+        <p>Learn how blockchain technology works and its real-world applications.</p>
+        <a href="https://www.edx.org/course/blockchain-for-business" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Digital Marketing</h3>
+        <p>SEO, SEM, Social Media Marketing for beginners.</p>
+        <a href="https://www.coursera.org/specializations/digital-marketing" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Artificial Intelligence</h3>
+        <p>AI concepts, neural networks, and Python applications.</p>
+        <a href="https://www.udacity.com/course/intro-to-artificial-intelligence--ud954" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Big Data</h3>
+        <p>Learn Big Data with Hadoop, Spark, and more!</p>
+        <a href="https://www.coursera.org/specializations/big-data" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Ethical Hacking</h3>
+        <p>Learn how to secure systems from hackers.</p>
+        <a href="https://www.udemy.com/course/ethical-hacking-course/" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+      <div class="course-box">
+        <h3>Software Testing</h3>
+        <p>Master automated and manual testing practices.</p>
+        <a href="https://www.coursera.org/learn/software-testing" class="enroll-btn" target="_blank">Enroll Now</a>
+      </div>
+    </div>
+
+    <div class="links">
+      <h3>Useful Links</h3>
+      <a href="https://www.coursera.org/" target="_blank">Coursera</a>
+      <a href="https://www.edx.org/" target="_blank">edX</a>
+      <a href="https://www.udemy.com/" target="_blank">Udemy</a>
+      <a href="https://www.freecodecamp.org/" target="_blank">FreeCodeCamp</a>
+      <a href="https://www.khanacademy.org/" target="_blank">Khan Academy</a>
+      <a href="https://www.codecademy.com/" target="_blank">Codecademy</a>

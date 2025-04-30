@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - LearnSmart</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .contact-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #FF6F61;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #FF6F61;
+            font-weight: bold;
+        }
+
+        .contact-message span {
+            font-style: italic;
+            color: #ffeb3b;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea, button {
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #FF6F61;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #FF6F61;
+            outline: none;
+        }
+
+        button {
+            background: #FF6F61;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #FF4E36;
+            transform: translateY(-3px);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #FF6F61;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+        /* Floating contact message box */
+        .floating-message {
+            background-color: #FF6F61;
+            padding: 15px 25px;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            width: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .contact-container {
+                width: 100%;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="contact">
+        <!-- Floating Message -->
+        <div class="floating-message">
+            💬 Have something to say or suggest? We would love to hear from you! Drop a message below!
+        </div>
+
+        <div class="container">
+            <div class="contact-container">
+                <h2>Contact Us</h2>
+                <p class="contact-message">Let us know your thoughts, feedback, or queries. We'll get back to you as soon as we can! 💌</p>
+
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Copyright ©Navyashree N. Made with <span style="color: red;">❤️</span> by <a href="mailto:navyashreensgr@gmail.com" style="color: #FF6F61;">Navyashree</a></p>
+        </div>
+    </div>
+    <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznUf7ECB7khYvfx1uPI8Mifk5GYVwaTMe8aTwLRqTdF4FmvpL72HnReVooPdyuf-Ph/exec"; // Use your Google Apps Script URL
+const form = document.forms['submit-to-google-sheet'];
+const msg = document.getElementById("msg");
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.trim() === "Success") {
+            msg.innerHTML = "✅ Message sent successfully!";
+            form.reset();
+        } else {
+            msg.innerHTML = "❌ Error: " + data;
+        }
+        setTimeout(() => msg.innerHTML = "", 5000);
+    })
+    .catch(error => {
+        msg.innerHTML = "⚠️ Something went wrong. Please try again.";
+        console.error("Error!", error.message);
+    });
+});
+</script>
+    
+</body>
+</html>
